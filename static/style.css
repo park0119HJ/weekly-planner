@@ -1,0 +1,263 @@
+body {
+  font-family: "Apple SD Gothic Neo", sans-serif;
+  margin: 0; padding: 0;
+  background: #f2f4f8;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.day-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+  padding: 16px;
+  transition: transform .2s;
+}
+
+.day-card:hover {
+  transform: translateY(-2px);
+}
+
+.day-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  text-align: center;
+  color: #333;
+}
+
+.day-card p {
+  margin: 4px 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+button, input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: #4c6ef5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+button:hover {
+  background: #3b5bdb;
+}
+/* style.css 맨 아래에 추가 */
+
+.container-small {
+  max-width: 360px;
+  margin: 80px auto;     /* 위에서 80px 띄우고, 좌/우 Auto */
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.container-small h2 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.container-small form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-small select,
+.container-small input[type="password"],
+.container-small button {
+  margin-bottom: 12px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.container-small button {
+  background: #4c6ef5;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.container-small button:hover {
+  background: #3b5bdb;
+}
+
+.error {
+  color: #e03131;
+  text-align: center;
+  margin-bottom: 12px;
+}
+/* 기존 스타일 유지… */
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* 섹션 블록 공통 */
+.block {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.block .title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* 숙제·준비물 표 */
+.homework-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.homework-table th, .homework-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.homework-table th {
+  background: #f9fafb;
+}
+.homework-table .holiday {
+  color: #e03131;
+}
+
+/* 입력 필드 */
+input[type="text"], textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* 버튼 */
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 16px;
+  color: #fff;
+  background: #4c6ef5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #3b5bdb;
+}
+/* parent.html 전용 블럭 스타일 (가장 아래에 추가하세요) */
+
+.parent-header {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 24px 0;
+  color: #333;
+}
+
+/* 기존 .parent-blocks 대신, 세로로 한 줄씩 나열 */
+.parent-blocks {
+  display: flex;
+  flex-direction: column;   /* ← 세로 정렬 */
+  gap: 12px;
+}
+.day-card {
+  background: #f0f4ff;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;              /* full-width */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.day-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: #1c3faa;
+}
+
+.day-card p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.parent-section {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.parent-section .title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1c3faa;
+  border-bottom: 1px solid #e3e8f1;
+  padding-bottom: 6px;
+}
+/* static/style.css 아래에 추가하세요 */
+
+/* 1) 컨테이너 최대 너비 변경 */
+.container {
+  max-width: 800px;    /* 기존 600px → 800px */
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+/* 2) 관리자 표 내 버튼 작게 */
+table button {
+  padding: 4px 8px;    /* 작은 패딩 */
+  font-size: 0.85rem;  /* 글자 크기 축소 */
+}
+
+/* 3) 일반 form 버튼도 조금 작게 */
+button {
+  padding: 8px 12px;   /* 기존보다 약간 줄임 */
+  font-size: 0.95rem;  /* 기존 1rem → 0.95rem */
+  border-radius: 4px;  /* 모서리 약간 덜 둥글게 */
+}
+

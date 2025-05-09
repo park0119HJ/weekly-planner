@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>선생님 로그인</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container-small">
+    <h2>선생님 로그인</h2>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form action="/teacher_login" method="post">
+      <label>
+        반 선택:
+        <select name="class_name" required>
+          <option value="" disabled selected>반을 선택하세요</option>
+          {% for c in classes %}
+            <option value="{{ c }}">{{ c }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label>
+        선생님 코드:
+        <input type="password" name="code" placeholder="코드를 입력하세요" required>
+      </label>
+
+      <button type="submit">로그인</button>
+    </form>
+  </div>
+</body>
+</html>

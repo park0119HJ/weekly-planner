@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>학부모 페이지 - 주간 안내</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- 헤더 -->
+    <div class="parent-header">주간목양계획안</div>
+
+    <!-- 주차 선택 -->
+    <div class="parent-section">
+      <form method="get" action="/parent">
+        <label>
+          주차:
+          <select name="week" onchange="this.form.submit()">
+            {% for w in weeks %}
+              <option value="{{ w }}" {% if w==selected_week %}selected{% endif %}>{{ w }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </form>
+      <div style="margin-top:12px;">
+        <strong>주제:</strong> {{ info.subject or "" }}
+      </div>
+    </div>
+
+    <!-- 요일별 카드 -->
+    <div class="parent-blocks">
+      {% for i in range(5) %}
+      <div class="day-card">
+        <h3>{{ ['월','화','수','목','금'][i] }} ({{ info.day_nums[i] }})</h3>
+        <p>📝 {{ info.homeworks[i] }}</p>
+        <p>🎒 {{ info.materials[i] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- 7원리 섹션 -->
+    <div class="parent-section">
+      <div class="title">예수님의 어린이 & 크리스천 영재교육 7원리</div>
+      {% set labels = ['Story Telling','Bible','Sing','Question & Answer','Thinking','Activity','기도'] %}
+      {% for idx in range(7) %}
+      <p><strong>{{ labels[idx] }}:</strong> {{ info.principles[idx] or "" }}</p>
+      {% endfor %}
+    </div>
+
+    <!-- 영어 단어 -->
+    <div class="parent-section">
+      <div class="title">English Words</div>
+      <p>{{ info.english or "" }}</p>
+    </div>
+
+    <!-- 중보기도 -->
+    <div class="parent-section">
+      <div class="title">중보기도</div>
+      <p>{{ info.pray or "" }}</p>
+    </div>
+
+    <!-- 공지사항 -->
+    <div class="parent-section">
+      <div class="title">공지사항</div>
+      <p>{{ info.notice_all or "" }}</p>
+    </div>
+
+  </div>
+</body>
+</html>

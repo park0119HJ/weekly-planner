@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>선생님 페이지 - 주간 계획 작성</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 주차 선택 + 주제 입력 -->
+    <div class="block">
+      <div class="title">주간학습안내</div>
+      <form method="get" action="/teacher">
+        <label>
+          주차 선택:
+          <select name="week" onchange="this.form.submit()">
+            {% for w in weeks %}
+              <option value="{{ w }}" {% if w==selected_week %}selected{% endif %}>{{ w }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </form>
+      <div style="margin-top:12px">
+        <label>
+          주제:
+          <input type="text" name="subject" form="saveForm" value="{{ info.subject or '' }}" placeholder="주제를 입력하세요">
+        </label>
+      </div>
+    </div>
+
+    <!-- 숙제 · 준비물 -->
+    <form id="saveForm" method="post" action="/teacher">
+      <input type="hidden" name="week" value="{{ selected_week }}">
+      <div class="block">
+        <div class="title">숙제 · 준비물</div>
+        <table class="homework-table">
+          <tr>
+            <th>요일</th>
+            {% for d in ['월','화','수','목','금'] %}
+              <th>{{ d }}</th>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>날짜</th>
+            {% for idx in range(5) %}
+              {% set dn = info.day_nums[idx] %}
+              <td class="{{ 'holiday' if info.holidays and info.holidays[idx] else '' }}">{{ dn }}</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>숙제</th>
+            {% for i in range(5) %}
+              <td><input type="text" name="homework_{{i}}" value="{{ info.homeworks[i] }}"></td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>준비물</th>
+            {% for i in range(5) %}
+              <td><input type="text" name="material_{{i}}" value="{{ info.materials[i] }}"></td>
+            {% endfor %}
+          </tr>
+        </table>
+      </div>
+
+      <!-- 예수님의 어린이 & 크리스천 영재교육 7원리 -->
+      <div class="block">
+        <div class="title">예수님의 어린이 & 크리스천 영재교육 7원리</div>
+        <table style="width:100%; border-collapse:collapse">
+          {% for label in ['Story Telling','Bible','Sing','Question & Answer','Thinking','Activity','기도'] %}
+          <tr>
+            <td style="width:30%; padding:8px; border:1px solid #ddd; background:#f9fafb">{{ label }}</td>
+            <td style="padding:8px; border:1px solid #ddd">
+              <textarea name="principle_{{ loop.index0 }}" rows="2" placeholder="{{ label }} 내용을 입력하세요">{{ info.principles[loop.index0] if info.principles else '' }}</textarea>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <!-- 영어 단어 -->
+      <div class="block">
+        <div class="title">English Words</div>
+        <textarea name="english" rows="2" form="saveForm" placeholder="이번 주 학습 단어를 입력하세요">{{ info.english or '' }}</textarea>
+      </div>
+
+      <!-- 중보기도 -->
+      <div class="block">
+        <div class="title">중보기도</div>
+        <textarea name="pray" rows="2" form="saveForm" placeholder="기도 제목을 입력하세요">{{ info.pray or '' }}</textarea>
+      </div>
+
+      <!-- 공지사항 -->
+      <div class="block">
+        <div class="title">공지사항</div>
+        <textarea name="notice_all" rows="3" form="saveForm" placeholder="공지사항을 입력하세요">{{ info.notice_all or '' }}</textarea>
+      </div>
+
+      <!-- 배포 & 저장 버튼 -->
+      <div>
+        <label>
+          <input type="checkbox" name="published" value="yes" form="saveForm" {% if info.published %}checked{% endif %}>
+          학부모에게 배포
+        </label>
+        <button type="submit" form="saveForm">저장/배포</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

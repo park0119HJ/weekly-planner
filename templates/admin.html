@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>관리자 페이지</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="parent-header">반 관리</h1>
+
+    <!-- 1) 기존 반 리스트: 수정·삭제 -->
+    <div class="parent-section">
+      <div class="title">등록된 반</div>
+      <table style="width:100%; border-collapse: collapse;">
+        <tr style="background: #f0f4ff;">
+          <th style="padding:8px; border:1px solid #ddd;">반 이름</th>
+          <th style="padding:8px; border:1px solid #ddd;">선생님 코드</th>
+          <th style="padding:8px; border:1px solid #ddd;">학부모 코드</th>
+          <th style="padding:8px; border:1px solid #ddd;">액션</th>
+        </tr>
+        {% for c in classes %}
+        <tr>
+          <form method="post" action="/admin/update">
+            <td style="padding:8px; border:1px solid #ddd;">
+              <input type="text" name="name" value="{{ c.name }}" readonly style="border:none; background:transparent; width:100%;">
+            </td>
+            <td style="padding:8px; border:1px solid #ddd;">
+              <input type="text" name="teacher_code" value="{{ c.teacher_code }}">
+            </td>
+            <td style="padding:8px; border:1px solid #ddd;">
+              <input type="text" name="parent_code" value="{{ c.parent_code }}">
+            </td>
+            <td style="padding:8px; border:1px solid #ddd; text-align:center;">
+              <button type="submit" style="margin-right:4px;">수정</button>
+          </form>
+          <form method="post" action="/admin/delete" style="display:inline">
+              <input type="hidden" name="name" value="{{ c.name }}">
+              <button type="submit" style="background:#e03131;">삭제</button>
+          </form>
+            </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <!-- 2) 새 반 추가 -->
+    <div class="parent-section">
+      <div class="title">새 반 추가</div>
+      <form method="post" action="/admin/add">
+        <label>반 이름: <input type="text" name="name" required></label><br><br>
+        <label>선생님 코드: <input type="text" name="teacher_code" required></label><br><br>
+        <label>학부모 코드: <input type="text" name="parent_code" required></label><br><br>
+        <button type="submit">추가</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
